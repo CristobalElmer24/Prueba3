@@ -1,0 +1,50 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class GestorTareas {
+    public static void main(String[] args) {
+        ArrayList<String> tareas = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        int opcion = 0;
+
+        while (opcion != 3) {
+            System.out.println("\n--- GESTOR DE TAREAS (JAVA) ---");
+            System.out.println("1. Agregar tarea");
+            System.out.println("2. Ver lista");
+            System.out.println("3. Salir");
+            System.out.print("Seleccione una opcion: ");
+
+            try {
+                opcion = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Ingrese un numero del 1 al 3.");
+                continue;
+            }
+
+            switch (opcion) {
+                case 1:
+                    System.out.print("Descripcion de la tarea: ");
+                    String nuevaTarea = scanner.nextLine();
+                    tareas.add(nuevaTarea);
+                    System.out.println("¡Tarea agregada con exito!");
+                    break;
+                case 2:
+                    System.out.println("\n--- MIS PENDIENTES ---");
+                    if (tareas.isEmpty()) {
+                        System.out.println("La lista esta vacia.");
+                    } else {
+                        for (int i = 0; i < tareas.size(); i++) {
+                            System.out.println((i + 1) + ". " + tareas.get(i));
+                        }
+                    }
+                    break;
+                case 3:
+                    System.out.println("Cerrando aplicacion...");
+                    break;
+                default:
+                    System.out.println("Opcion no valida.");
+            }
+        }
+        scanner.close();
+    }
+}
